@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'bootstrap.css' %} " rel="stylesheet">
+    <link href="{% static 'bootstrap.min.css' %} " rel="stylesheet">
+    <link href="{% static 'main.css' %} " rel="stylesheet">
+    <title>sign up</title>
+</head>
+<body>
+   <header></header> 
+   <main>
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+          <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">Register as Client</h1>
+            <p class="col-lg-10 fs-4">Sign up to your dashboard and check your activities.</p>
+          </div>
+          <div class="col-md-10 mx-auto col-lg-5">
+            {% for info in messages %}
+            <h5 class="text-danger">{{ info }}</h5>
+            {% endfor %}
+            {% for message in user %}
+            {% for errors in message.errors %}
+            <h5 class="text-danger">{{ errors }}</h5>
+            {% endfor %}
+            {% endfor %}
+            <form class="p-4 p-md-5 border rounded-3 bg-light" action="client_signup" method="POST">
+              {% csrf_token %}
+              <div class="form-floating mb-3">
+                {{ user.company_name }}
+                <label for="floatingInput">Company Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ user.email }}
+                <label for="floatingInput">Company Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ client.website }}
+                <label for="floatingInput">Company Website</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ client.phone_no }}
+                <label for="floatingInput">Phone Number</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ client.location }}
+                <label for="floatingInput">Company Location</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Input code" name="reg_code">
+                <label for="floatingInput">Input Registeration Code</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ user.password1 }}
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                {{ user.password2 }}
+                <label for="floatingPassword">Verify Password</label>
+              </div>
+              <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me"> Remember me
+                </label>
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+              <hr class="my-4">
+              <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+            </form>
+          </div>
+        </div>
+      </div>
+   </main>
+   <footer></footer>
+   <script src="{% static 'bootstrap.js' %} "></script>
+   <script src="{% static 'bootstrap.bundle.js' %} "></script>
+   <script src="{% static 'bootstrap.bundle.min.js' %} "></script>
+</body>
+</html>
